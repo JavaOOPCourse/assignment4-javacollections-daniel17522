@@ -10,6 +10,25 @@ public class Main {
         IssueService issueService = new IssueService();
         ActionHistoryService actionService = new ActionHistoryService();
 
+        // Initialize all services with sample data
+        studentService.initializeStudents();
+        studentService.removeLowGPA();
+        studentService.findHighestGPA();
+        studentService.insertAtIndex();
+
+        appointmentService.initializeAppointments();
+        appointmentService.cancelLast();
+        appointmentService.showFirstAndLast();
+
+        issueService.initializeIssues();
+        issueService.showMostUrgent();
+        issueService.resolveIssues();
+
+        actionService.initializeActions();
+        actionService.undoLastAction();
+        actionService.addRequestedTranscript();
+        actionService.showFirstAndLast();
+
         Scanner scanner = new Scanner(System.in);
         int choice;
 
@@ -29,21 +48,32 @@ public class Main {
             switch (choice) {
                 case 1:
                     // TODO
+                    studentService.printStudents();
                     break;
                 case 2:
                     // TODO
+                    appointmentService.printAppointments();
                     break;
                 case 3:
                     // TODO
+                    issueService.printRemainingIssues();
                     break;
                 case 4:
                     // TODO
+                    actionService.printHistory();
                     break;
                 case 5:
                     // TODO
+                    System.out.print("Enter issue description: ");
+                    scanner.nextLine(); // consume leftover newline
+                    String description = scanner.nextLine();
+                    System.out.print("Enter urgency level (1 = most urgent): ");
+                    int urgency = scanner.nextInt();
+                    issueService.addNewIssue(description, urgency);
                     break;
                 case 6:
                     // TODO
+                    actionService.undoLastAction();
                     break;
                 case 7:
                     System.out.println("Exiting... 👋");
